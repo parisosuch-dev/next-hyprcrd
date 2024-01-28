@@ -62,7 +62,7 @@ export default function StarField(props: Props) {
             ")";
           c.fillStyle = rgb;
 
-          c.fillRect(x, y, 2, 2);
+          c.fillRect(x, y, 5, 5);
         };
         const moveStars = (distance: number) => {
           const count = stars.length;
