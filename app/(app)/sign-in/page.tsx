@@ -11,11 +11,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Google, OR, Apple } from "@/components/auth";
 import Link from "next/link";
+import StarField from "@/components/starfield";
 
 export default function SignIn() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center">
-      <Card className="sm:w-1/3">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-slate-950">
+      <Card className="sm:w-1/3 z-10">
         <CardHeader className="text-center">
           <CardTitle>Sign in to your account</CardTitle>
           <CardDescription>Enter your credentials</CardDescription>
@@ -45,6 +46,7 @@ export default function SignIn() {
           </Link>
         </CardFooter>
       </Card>
+      <StarField starCount={1000} speed={0.15} backgroundColor="black" />
     </div>
   );
 }
