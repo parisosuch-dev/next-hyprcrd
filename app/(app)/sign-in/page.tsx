@@ -15,7 +15,7 @@ import Link from "next/link";
 export default function SignIn() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center">
-      <Card className="w-1/3">
+      <Card className="sm:w-1/3">
         <CardHeader className="text-center">
           <CardTitle>Sign in to your account</CardTitle>
           <CardDescription>Enter your credentials</CardDescription>
