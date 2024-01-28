@@ -67,7 +67,7 @@ function SignInForm({
         <Apple mode="signup" />
       </div>
       <p className="text-center">
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <button
           onClick={() => {
             setModal("signup");
