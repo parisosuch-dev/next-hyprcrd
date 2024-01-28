@@ -35,7 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${krypton.variable} ${inter.className}`}>
+      <body
+        className={`${krypton.variable} ${inter.className} flex flex-col min-h-screen`}
+      >
         {children}
       </body>
     </html>
