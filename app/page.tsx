@@ -16,7 +16,7 @@ export default function Home() {
       <p className="text-md sm:text-lg font-krypton">
         your visual resume and cyberspace connection hub.
       </p>
-      <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-1/2 sm:w-full justify-center mt-6">
+      <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-1/2 sm:w-full justify-center mt-6 z-10">
         <Button
           className="sm:w-1/6"
           variant="secondary"
