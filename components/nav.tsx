@@ -1,9 +1,8 @@
-'use client';
+"use client";
 
 import Link from "next/link";
 
 export default function Nav() {
-
   return (
     <div className="w-full bg-slate-950 text-white p-8 flex flex-row justify-between">
       <div className="w-1/2">
@@ -11,7 +10,7 @@ export default function Nav() {
           HYPRCRD
         </h1>
       </div>
-      <div className="w-1/2 space-x-6 flex justify-end items-center text-center">
+      <div className="w-1/2 space-x-4 text-xs sm:text-md sm:space-x-6 flex justify-end items-center text-center">
         <Link href="/sign-in" className="hover:underline">
           Sign In
         </Link>
