@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Nav() {
   return (
-    <div className="w-full bg-slate-950 text-white p-8 flex flex-row justify-between">
+    <div className="w-full bg-slate-950 text-white p-4 sm:p-8 flex flex-row justify-between">
       <div className="w-1/2">
         <Link
           className="tracking-widest font-black font-space text-lg sm:text-4xl"
