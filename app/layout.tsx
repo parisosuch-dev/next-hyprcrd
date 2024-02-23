@@ -1,26 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-
-const krypton = localFont({
-  src: [
-    {
-      path: "../public/fonts/MonaspaceKrypton-Regular.otf",
-      weight: "400",
-    },
-    {
-      path: "../public/fonts/MonaspaceKrypton-Bold.otf",
-      weight: "700",
-    },
-    {
-      path: "../public/fonts/MonaspaceKrypton-ExtraBold.otf",
-      weight: "800",
-    },
-  ],
-  variable: "--font-krypton",
+const spaceMono = Space_Mono({
+  weight: "400",
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-space",
 });
 
 export const metadata: Metadata = {
@@ -36,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${krypton.variable} ${inter.className} flex flex-col min-h-screen`}
+        className={`${inter.className} ${spaceMono.variable} flex flex-col min-h-screen`}
       >
         {children}
       </body>

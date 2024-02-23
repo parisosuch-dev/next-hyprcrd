@@ -30,15 +30,14 @@ export default function SignIn() {
               <Label>Password</Label>
               <Input placeholder="some secret" type="password" />
             </div>
-            <Button className="w-full">Sign in</Button>
+            <Button className="w-full text-sm sm:text-md">Sign in</Button>
           </div>
           <div className="mt-4 flex flex-col space-y-2">
             <OR />
             <Google mode="sign-in" />
-            <Apple mode="sign-in" />
           </div>
         </CardContent>
-        <CardFooter className="space-x-1 flex justify-center">
+        <CardFooter className="space-x-1 flex justify-center text-xs sm:text-sm">
           <p>Don&apos;t have an account?</p>
           <Link href="/sign-up" className="underline">
             Sign up

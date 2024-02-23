@@ -9,7 +9,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Google, OR, Apple } from "@/components/auth";
+import { Google, OR } from "@/components/auth";
 import Link from "next/link";
 
 export default function SignIn() {
@@ -30,15 +30,16 @@ export default function SignIn() {
               <Label>Password</Label>
               <Input placeholder="some secret" type="password" />
             </div>
-            <Button className="w-full">Sign up with email</Button>
+            <Button className="w-full text-sm sm:text-md">
+              Sign up with email
+            </Button>
           </div>
           <div className="mt-4 flex flex-col space-y-2">
             <OR />
             <Google mode="sign-up" />
-            <Apple mode="sign-up" />
           </div>
         </CardContent>
-        <CardFooter className="space-x-1 flex justify-center">
+        <CardFooter className="space-x-1 flex justify-center text-xs sm:text-sm">
           <p>Already have an account?</p>
           <Link href="/sign-in" className="underline">
             Sign in

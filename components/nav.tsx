@@ -6,11 +6,14 @@ export default function Nav() {
   return (
     <div className="w-full bg-slate-950 text-white p-8 flex flex-row justify-between">
       <div className="w-1/2">
-        <h1 className="tracking-widest font-black font-krypton text-4xl">
+        <Link
+          className="tracking-widest font-black font-krypton text-4xl"
+          href="/"
+        >
           HYPRCRD
-        </h1>
+        </Link>
       </div>
-      <div className="w-1/2 space-x-4 text-xs sm:text-md sm:space-x-6 flex justify-end items-center text-center">
+      <div className="w-1/2 space-x-4 text-xs sm:text-base sm:space-x-6 flex justify-end items-center text-center">
         <Link href="/sign-in" className="hover:underline">
           Sign In
         </Link>

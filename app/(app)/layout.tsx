@@ -22,6 +22,7 @@ const krypton = localFont({
     },
   ],
   variable: "--font-krypton",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -35,13 +36,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${krypton.variable} ${inter.className} flex flex-col min-h-screen`}
-      >
-        <Nav />
-        {children}
-      </body>
-    </html>
+    <div>
+      <Nav />
+      {children}
+    </div>
   );
 }

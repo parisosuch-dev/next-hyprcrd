@@ -19,7 +19,7 @@ const config = {
     },
     extend: {
       fontFamily: {
-        krypton: ["var(--font-krypton)"],
+        space: ["var(--font-space)"],
       },
       colors: {
         border: "hsl(var(--border))",

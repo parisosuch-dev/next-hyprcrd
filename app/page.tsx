@@ -10,10 +10,10 @@ export default function Home() {
   return (
     <div className="bg-slate-950 w-full min-h-screen text-center text-white flex flex-col items-center justify-center">
       <StarField starCount={1000} speed={0.15} backgroundColor="black" />
-      <h1 className="text-6xl sm:text-9xl tracking-widest font-black font-krypton">
+      <h1 className="text-6xl sm:text-9xl tracking-widest font-black font-space">
         HYPRCRD
       </h1>
-      <p className="text-md sm:text-lg font-krypton">
+      <p className="text-md sm:text-lg font-space">
         your visual resume and cyberspace connection hub.
       </p>
       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 w-1/2 sm:w-full justify-center mt-6 z-10">
