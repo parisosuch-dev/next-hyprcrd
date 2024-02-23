@@ -9,3 +9,5 @@ export async function signUp(email: string, password: string) {
 
   return promise;
 }
+
+export const getAccount = () => account.get();

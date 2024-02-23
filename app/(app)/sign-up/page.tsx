@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import { Google, OR } from "@/components/auth";
 import { Button } from "@/components/ui/button";
@@ -17,26 +18,50 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { BarLoader } from "react-spinners"
 
-import { signUp } from "@/lib/appwrite/auth";
-import { AppwriteException } from "appwrite"
-
+import { signUp, getAccount } from "@/lib/appwrite/auth";
+import { AppwriteException, Models } from "appwrite"
+import { account } from "@/lib/appwrite/client";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<Models.User<Models.Preferences> | null>(null);
+  const [session, setSession] = useState<Models.Session>();
+
+  const router = useRouter();
 
   const handleSignUp = () => {
     setLoading(true);
     signUp(email, password).then((res) => {
       setError("");
       setLoading(false);
+      account.createEmailPasswordSession(email, password).then((sesh) => {
+        setSession(sesh);
+      })
+      router.push("/my-account")
     }).catch((e: AppwriteException) => {
       setError(e.message);
       setLoading(false);
     });
   }
+
+  const getUser = async () => {
+    getAccount().then((res) => {
+      setUser(res);
+    }).catch((e) => {
+      setUser(null);
+    })
+  }
+
+  useEffect(() => {
+    getUser().then(() => {
+      if (user) {
+        router.push("/my-account");
+      }
+    });
+  }, [user]);
 
   return (
     <div className="flex flex-col flex-1 h-full items-center justify-center bg-slate-950 px-4">
