@@ -13,7 +13,7 @@ export default function Nav() {
           HYPRCRD
         </Link>
       </div>
-      <div className="w-1/2 space-x-4 text-xs sm:text-base sm:space-x-6 flex justify-end items-center text-center">
+      <div className="w-1/2 space-x-4 text-xs sm:text-base sm:space-x-6 flex justify-end items-center text-center font-space">
         <Link href="/sign-in" className="hover:underline">
           Sign In
         </Link>
