@@ -32,8 +32,10 @@ export default function SignIn() {
   const handleSignIn = () => {
     setLoading(true);
     signIn(email, password).then((sesh) => {
+      setLoading(false);
       router.push("/my-account");
     }).catch((e: AppwriteException) => {
+      setLoading(false);
       setError(e.message);
     });
   }

@@ -16,17 +16,19 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { AlreadyLoggedIn } from "@/components/auth";
 import { BarLoader } from "react-spinners";
 
 import { getAccount, signUp } from "@/lib/appwrite/auth";
 import { account } from "@/lib/appwrite/client";
-import { AppwriteException } from "appwrite";
+import { AppwriteException, Models } from "appwrite";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState<Models.User<Models.Preferences> | null>(null);
 
   const router = useRouter();
 
@@ -37,6 +39,8 @@ export default function SignUp() {
       setLoading(false);
       account.createEmailPasswordSession(email, password).then((sesh) => {
         // do nothing
+      }).catch((e) => {
+        console.log(e);
       })
       router.push("/my-account");
     }).catch((e: AppwriteException) => {
@@ -47,14 +51,16 @@ export default function SignUp() {
 
   useEffect(() => {
     getAccount().then((res) => {
-      router.push('/my-account')
+      setUser(res);
     }).catch((e) => {
-      // do nothing
+      setUser(null);
     });
   }, []);
 
   return (
     <div className="flex flex-col flex-1 h-full items-center justify-center bg-slate-950 px-4">
+      {user ? <AlreadyLoggedIn/>
+      :
       <Card className="w-full sm:w-1/3 z-10">
         <CardHeader className="text-center">
           <CardTitle>Create an account</CardTitle>
@@ -86,7 +92,8 @@ export default function SignUp() {
             Sign in
           </Link>
         </CardFooter>
-      </Card>
+      </Card>}
+      
     </div>
   );
 }

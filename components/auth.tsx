@@ -1,6 +1,20 @@
+"use client"
+
+import { FaApple, FaGoogle } from "react-icons/fa";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
-import { FaApple, FaGoogle } from "react-icons/fa";
+
+import { useRouter } from "next/navigation";
+import { account } from "@/lib/appwrite/client";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export function OR() {
   return (
@@ -30,4 +44,27 @@ export function Apple({ mode }: { mode: string }) {
       <p>{mode === "sign-in" ? "Sign in with Apple" : "Sign up with Apple"}</p>
     </Button>
   );
+}
+
+export function AlreadyLoggedIn() {
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await account.deleteSession("current");
+  }
+
+  return (
+    <Card className="w-full sm:w-1/3 z-10">
+        <CardHeader className="text-center">
+          <CardTitle>Looks Like You Are Signed In</CardTitle>
+          <CardDescription>Do you want to continue to your profile or sign out?</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-2">
+            <Button className="w-full text-sm sm:text-base" onClick={() => router.push("/my-account")}>Continue to profile</Button>
+            <Button className="w-full text-sm sm:text-base border-2" variant="outline" onClick={handleSignOut}>Sign out</Button>
+          </div>
+        </CardContent>
+      </Card>
+  )
 }
