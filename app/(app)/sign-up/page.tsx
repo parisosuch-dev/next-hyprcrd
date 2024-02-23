@@ -1,8 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import { Google, OR } from "@/components/auth";
 import { Button } from "@/components/ui/button";
@@ -16,19 +16,17 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { BarLoader } from "react-spinners"
+import { BarLoader } from "react-spinners";
 
-import { signUp, getAccount } from "@/lib/appwrite/auth";
-import { AppwriteException, Models } from "appwrite"
+import { getAccount, signUp } from "@/lib/appwrite/auth";
 import { account } from "@/lib/appwrite/client";
+import { AppwriteException } from "appwrite";
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<Models.User<Models.Preferences> | null>(null);
-  const [session, setSession] = useState<Models.Session>();
 
   const router = useRouter();
 
@@ -38,30 +36,22 @@ export default function SignUp() {
       setError("");
       setLoading(false);
       account.createEmailPasswordSession(email, password).then((sesh) => {
-        setSession(sesh);
+        // do nothing
       })
-      router.push("/my-account")
+      router.push("/my-account");
     }).catch((e: AppwriteException) => {
       setError(e.message);
       setLoading(false);
     });
   }
 
-  const getUser = async () => {
-    getAccount().then((res) => {
-      setUser(res);
-    }).catch((e) => {
-      setUser(null);
-    })
-  }
-
   useEffect(() => {
-    getUser().then(() => {
-      if (user) {
-        router.push("/my-account");
-      }
+    getAccount().then((res) => {
+      router.push('/my-account')
+    }).catch((e) => {
+      // do nothing
     });
-  }, [user]);
+  }, []);
 
   return (
     <div className="flex flex-col flex-1 h-full items-center justify-center bg-slate-950 px-4">
