@@ -14,8 +14,8 @@ export function OR() {
 
 export function Google({ mode }: { mode: string }) {
   return (
-    <Button className="space-x-2 text-sm sm:text-md">
-      <FaGoogle size={20} />
+    <Button className="space-x-2 text-sm sm:text-base">
+      <FaGoogle size={15} />
       <p>
         {mode === "sign-in" ? "Sign in with Google" : "Sign up with Google"}
       </p>
@@ -26,7 +26,7 @@ export function Google({ mode }: { mode: string }) {
 export function Apple({ mode }: { mode: string }) {
   return (
     <Button className="space-x-2 text-sm sm:text-md">
-      <FaApple size={20} />
+      <FaApple size={15} />
       <p>{mode === "sign-in" ? "Sign in with Apple" : "Sign up with Apple"}</p>
     </Button>
   );

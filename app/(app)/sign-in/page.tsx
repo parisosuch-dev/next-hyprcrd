@@ -30,7 +30,7 @@ export default function SignIn() {
               <Label>Password</Label>
               <Input placeholder="some secret" type="password" />
             </div>
-            <Button className="w-full text-sm sm:text-md">Sign in</Button>
+            <Button className="w-full text-sm sm:text-base">Sign in</Button>
           </div>
           <div className="mt-4 flex flex-col space-y-2">
             <OR />
