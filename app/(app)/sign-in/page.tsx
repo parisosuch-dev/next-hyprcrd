@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -11,8 +13,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Google, OR, Apple } from "@/components/auth";
 import Link from "next/link";
+import { UseUser } from "@/lib/appwrite/user";
 
 export default function SignIn() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login } = UseUser();
+
   return (
     <div className="flex flex-col flex-1 h-full items-center justify-center bg-slate-950">
       <Card className="sm:w-1/3 z-10">
@@ -24,13 +31,30 @@ export default function SignIn() {
           <div className="space-y-2">
             <div>
               <Label>Email</Label>
-              <Input placeholder="me@example.com" type="email" />
+              <Input
+                placeholder="me@example.com"
+                type="email"
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div>
               <Label>Password</Label>
-              <Input placeholder="some secret" type="password" />
+              <Input
+                placeholder="some secret"
+                type="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
             </div>
-            <Button className="w-full text-sm sm:text-base">Sign in</Button>
+            <Button
+              className="w-full text-sm sm:text-base"
+              onClick={() => {
+                login(email, password);
+              }}
+            >
+              Sign in
+            </Button>
           </div>
           <div className="mt-4 flex flex-col space-y-2">
             <OR />
