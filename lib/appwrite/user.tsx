@@ -47,6 +47,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const loadAccount = async () => {
     try {
       const loadedAccount = await account.get();
+      setUser(loadedAccount);
     } catch (err) {
       console.error(err);
       setError("Failed to load user.");
