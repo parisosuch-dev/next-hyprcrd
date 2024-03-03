@@ -1,3 +1,5 @@
+"use client";
+
 import { account, client } from "@/lib/appwrite/appwrite";
 import { AppwriteException, Models, ID } from "appwrite";
 import {
