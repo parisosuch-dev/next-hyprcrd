@@ -1,6 +1,6 @@
 "use client";
 
-import { account, client } from "@/lib/appwrite/appwrite";
+import { account, client } from "@/lib/appwrite/client";
 import { AppwriteException, Models, ID } from "appwrite";
 import {
   useContext,
@@ -17,7 +17,11 @@ export interface UserState {
   error: string | null;
   logout: () => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, passowrd: string, name: string) => Promise<void>;
+  signup: (
+    email: string,
+    passowrd: string,
+    name: string
+  ) => Promise<Models.User<Models.Preferences>>;
 }
 // create the default for that model
 const defaultState: UserState = {
@@ -26,7 +30,9 @@ const defaultState: UserState = {
   error: null,
   logout: async () => {},
   login: async () => {},
-  signup: async () => {},
+  signup: async () => {
+    throw new Error("Signup function not implemented in context provider.");
+  },
 };
 
 // create context
@@ -71,8 +77,14 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       const session = await account.create(ID.unique(), email, password, name);
       setUser(session);
       await account.createEmailSession(email, password);
+
+      if (!session) {
+        throw new Error("There was an error creating user account.");
+      }
+      return session;
     } catch (error) {
       console.error(error);
+      throw error;
     }
   };
 
