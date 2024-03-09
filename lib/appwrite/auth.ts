@@ -19,7 +19,6 @@ export const usernameExists = async (name: string) => {
 };
 
 export const addNewUser = async (user: Models.User<Models.Preferences>) => {
-  // TODO: add a new user to the user collection
   const data = { user_name: user.name };
   try {
     await databases.createDocument(DB_ID, USER_COLLECTION_ID, user.$id, data, [

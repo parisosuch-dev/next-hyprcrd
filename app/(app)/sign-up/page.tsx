@@ -26,7 +26,6 @@ export default function SignIn() {
   const { signup, user } = UseUser();
 
   const createUserAccount = async () => {
-    // TODO: validate user name and then sign up user and create user doc
     if (await usernameExists(name)) {
       setError("User with name already exists.");
       return;
