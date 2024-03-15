@@ -1,8 +1,8 @@
 import { Query, Models, Permission, Role } from "appwrite";
 import { databases } from "./client";
 
-const DB_ID = process.env.NEXT_PUBLIC_DB_ID!;
-const USER_COLLECTION_ID = process.env.NEXT_PUBLIC_DB_USER_ID!;
+const DB_ID = process.env.DB_ID!;
+const USER_COLLECTION_ID = process.env.DB_USER_ID!;
 
 export const usernameExists = async (name: string) => {
   // query db for user name

@@ -28,8 +28,8 @@ const defaultState: UserState = {
   user: null,
   loading: true,
   error: null,
-  logout: async () => {},
-  login: async () => {},
+  logout: async () => { },
+  login: async () => { },
   signup: async () => {
     throw new Error("Signup function not implemented in context provider.");
   },
