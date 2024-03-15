@@ -25,7 +25,7 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { signup, user } = UseUser();
+  const { signup, user, loading } = UseUser();
   const router = useRouter();
 
   const createUserAccount = async () => {
@@ -52,7 +52,7 @@ export default function SignIn() {
 
   return (
     <div className="flex flex-col flex-1 h-full items-center justify-center bg-slate-950">
-      {user ? <UserAlreadySignedIn /> : <Card className="sm:w-1/3 z-10">
+      {loading ? null : user ? <UserAlreadySignedIn /> : <Card className="sm:w-1/3 z-10">
         <CardHeader className="text-center">
           <CardTitle>Create an account</CardTitle>
           <CardDescription>Create an account with email</CardDescription>
