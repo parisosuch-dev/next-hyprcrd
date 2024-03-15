@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Google, OR } from "@/components/auth";
 import Link from "next/link";
 import { UseUser } from "@/lib/appwrite/user";
-import { addNewUser, usernameExists } from "@/lib/appwrite/auth";
+import { addNewUser, usernameExists, validateUserName } from "@/lib/appwrite/auth";
 
 export default function SignIn() {
   const [name, setName] = useState("");
@@ -26,10 +26,15 @@ export default function SignIn() {
   const { signup, user } = UseUser();
 
   const createUserAccount = async () => {
+    if (!validateUserName(name)) {
+      setError("Username does not fit username criteria. Username can only have alphabetical characters, numbers, and a length 0-30.")
+    }
+
     if (await usernameExists(name)) {
       setError("User with name already exists.");
       return;
     }
+
     const newUser = await signup(email, password, name);
 
     await addNewUser(newUser);
@@ -68,7 +73,7 @@ export default function SignIn() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            {error ? <p>{error}</p> : null}
+            {error ? <p className="text-xs sm:text-sm text-rose-500">{error}</p> : null}
             <Button
               className="w-full text-sm sm:text-base"
               onClick={createUserAccount}
