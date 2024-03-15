@@ -18,6 +18,7 @@ import Link from "next/link";
 import { UseUser } from "@/lib/appwrite/user";
 import { addNewUser, usernameExists, validateUserName } from "@/lib/appwrite/auth";
 import { AppwriteException } from "appwrite";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
   const [name, setName] = useState("");
@@ -25,6 +26,7 @@ export default function SignIn() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { signup, user } = UseUser();
+  const router = useRouter();
 
   const createUserAccount = async () => {
     if (!validateUserName(name)) {
@@ -40,6 +42,8 @@ export default function SignIn() {
     try {
       const newUser = await signup(email, password, name);
       await addNewUser(newUser);
+      // success, go to my-account
+      router.push('/my-account')
     } catch (error) {
       const err = error as AppwriteException;
       setError(err.message);

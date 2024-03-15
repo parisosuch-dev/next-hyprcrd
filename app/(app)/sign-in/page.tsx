@@ -15,20 +15,25 @@ import { Google, OR, Apple } from "@/components/auth";
 import Link from "next/link";
 import { UseUser } from "@/lib/appwrite/user";
 import { AppwriteException } from "appwrite";
+import { useRouter } from "next/navigation";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const { login } = UseUser();
+  const router = useRouter();
 
   const handleSignIn = async () => {
     try {
       await login(email, password);
+      // success, go to my-account
+      router.push('/my-account')
     } catch (error) {
       const err = error as AppwriteException;
       setError(err.message);
     }
+
   }
 
   return (
