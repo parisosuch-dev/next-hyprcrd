@@ -13,7 +13,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Google, OR } from "@/components/auth";
+import { Google, OR, UserAlreadySignedIn } from "@/components/auth";
 import Link from "next/link";
 import { UseUser } from "@/lib/appwrite/user";
 import { addNewUser, usernameExists, validateUserName } from "@/lib/appwrite/auth";
@@ -52,7 +52,7 @@ export default function SignIn() {
 
   return (
     <div className="flex flex-col flex-1 h-full items-center justify-center bg-slate-950">
-      <Card className="sm:w-1/3 z-10">
+      {user ? <UserAlreadySignedIn /> : <Card className="sm:w-1/3 z-10">
         <CardHeader className="text-center">
           <CardTitle>Create an account</CardTitle>
           <CardDescription>Create an account with email</CardDescription>
@@ -102,7 +102,8 @@ export default function SignIn() {
             Sign in
           </Link>
         </CardFooter>
-      </Card>
+      </Card>}
+
     </div>
   );
 }

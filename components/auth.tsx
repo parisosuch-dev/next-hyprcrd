@@ -1,6 +1,16 @@
-import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
 import { FaApple, FaGoogle } from "react-icons/fa";
+import { Button } from "./ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "./ui/separator";
+import { useRouter } from "next/navigation";
+import { UseUser } from "@/lib/appwrite/user";
 
 export function OR() {
   return (
@@ -30,4 +40,25 @@ export function Apple({ mode }: { mode: string }) {
       <p>{mode === "sign-in" ? "Sign in with Apple" : "Sign up with Apple"}</p>
     </Button>
   );
+}
+
+export function UserAlreadySignedIn() {
+  const router = useRouter();
+  const { logout } = UseUser();
+
+  return (
+    <Card className="sm:w-1/3 z-10">
+      <CardHeader className="text-center">
+        <CardTitle>You are already signed in</CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-col space-y-2">
+        <Button onClick={() => {
+          router.push("my-account")
+        }}>Continue to my profile</Button>
+        <Button variant="outline" onClick={() => {
+          logout();
+        }}>Sign out</Button>
+      </CardContent>
+    </Card>
+  )
 }

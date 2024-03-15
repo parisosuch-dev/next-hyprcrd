@@ -11,7 +11,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Google, OR, Apple } from "@/components/auth";
+import { Google, OR, Apple, UserAlreadySignedIn } from "@/components/auth";
 import Link from "next/link";
 import { UseUser } from "@/lib/appwrite/user";
 import { AppwriteException } from "appwrite";
@@ -21,7 +21,7 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = UseUser();
+  const { login, user } = UseUser();
   const router = useRouter();
 
   const handleSignIn = async () => {
@@ -38,7 +38,7 @@ export default function SignIn() {
 
   return (
     <div className="flex flex-col flex-1 h-full items-center justify-center bg-slate-950">
-      <Card className="sm:w-1/3 z-10">
+      {user ? <UserAlreadySignedIn /> : <Card className="sm:w-1/3 z-10">
         <CardHeader className="text-center">
           <CardTitle>Sign in to your account</CardTitle>
           <CardDescription>Enter your credentials</CardDescription>
@@ -82,7 +82,8 @@ export default function SignIn() {
             Sign up
           </Link>
         </CardFooter>
-      </Card>
+      </Card>}
+
     </div>
   );
 }
