@@ -14,11 +14,22 @@ import { Button } from "@/components/ui/button";
 import { Google, OR, Apple } from "@/components/auth";
 import Link from "next/link";
 import { UseUser } from "@/lib/appwrite/user";
+import { AppwriteException } from "appwrite";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { login } = UseUser();
+
+  const handleSignIn = async () => {
+    try {
+      await login(email, password);
+    } catch (error) {
+      const err = error as AppwriteException;
+      setError(err.message);
+    }
+  }
 
   return (
     <div className="flex flex-col flex-1 h-full items-center justify-center bg-slate-950">
@@ -47,11 +58,10 @@ export default function SignIn() {
                 }}
               />
             </div>
+            {error ? <p className="text-xs sm:text-sm text-rose-500">{error}</p> : null}
             <Button
               className="w-full text-sm sm:text-base"
-              onClick={() => {
-                login(email, password);
-              }}
+              onClick={handleSignIn}
             >
               Sign in
             </Button>

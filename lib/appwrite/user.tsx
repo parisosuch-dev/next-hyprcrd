@@ -68,7 +68,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       await loadAccount();
     } catch (err) {
       const appwriteException = err as AppwriteException;
-      console.error(appwriteException.message);
+      throw appwriteException;
     }
   };
 
