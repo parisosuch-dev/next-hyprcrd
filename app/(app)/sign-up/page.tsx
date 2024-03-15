@@ -17,6 +17,7 @@ import { Google, OR } from "@/components/auth";
 import Link from "next/link";
 import { UseUser } from "@/lib/appwrite/user";
 import { addNewUser, usernameExists, validateUserName } from "@/lib/appwrite/auth";
+import { AppwriteException } from "appwrite";
 
 export default function SignIn() {
   const [name, setName] = useState("");
@@ -36,9 +37,13 @@ export default function SignIn() {
       return;
     }
 
-    const newUser = await signup(email, password, name);
-
-    await addNewUser(newUser);
+    try {
+      const newUser = await signup(email, password, name);
+      await addNewUser(newUser);
+    } catch (error) {
+      const err = error as AppwriteException;
+      setError(err.message);
+    }
   };
 
   return (

@@ -82,8 +82,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         throw new Error("There was an error creating user account.");
       }
       return session;
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      const error = err as AppwriteException;
+      console.log(error);
       throw error;
     }
   };
