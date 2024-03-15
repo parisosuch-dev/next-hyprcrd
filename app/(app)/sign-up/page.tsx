@@ -27,7 +27,8 @@ export default function SignIn() {
 
   const createUserAccount = async () => {
     if (!validateUserName(name)) {
-      setError("Username does not fit username criteria. Username can only have alphabetical characters, numbers, and a length 0-30.")
+      setError("Username does not fit username criteria. Username can only have alphabetical characters, numbers, and a length 0-30.");
+      return;
     }
 
     if (await usernameExists(name)) {
